@@ -1,0 +1,13 @@
+{
+  "name": "etha-adapters",
+  "version": "1.0.0",
+  "description": "Adapters for the general protocol of ETHA Lend",
+  "main": "index.js",
+  "repository": "git@github.com:ethalend/etha-adapters.git",
+  "author": "ETHA Lend Team",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "ethers": "^5.5.4"
+  }
+}
