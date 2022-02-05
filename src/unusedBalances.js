@@ -1,4 +1,4 @@
-const { getBalances } = require("./utils/tokens");
+const { getBalances } = require("./utils/util");
 const ethers = require("ethers");
 const { GraphQLClient } = require("graphql-request");
 const { default: axios } = require("axios");
