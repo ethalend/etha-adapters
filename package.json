@@ -7,6 +7,10 @@
   "author": "ETHA Lend Team",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "totaltvl": "node ./src/totalTvl.js",
+    "unusedbalances": "node ./src/unusedBalances.js"
+  },
   "dependencies": {
     "axios": "^0.25.0",
     "ethers": "^5.5.4",

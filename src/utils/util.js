@@ -24,6 +24,39 @@ async function getBalances(provider_, tokens, account) {
   return [blockNumber.toNumber(), balances];
 }
 
+async function getQuickswapPoolInfo(
+  token,
+  lpBalance,
+  priceData,
+  client,
+  PAIR_DATA
+) {
+  try {
+    const {
+      pairs: [pair],
+    } = await client.request(PAIR_DATA(token.toLowerCase()));
+
+    const token0Price = priceData[pair.token0.symbol];
+    const token1Price = priceData[pair.token1.symbol];
+
+    const userShare = +lpBalance / pair.totalSupply / 1e18;
+
+    const usdValueQuick =
+      userShare * (token0Price * pair.reserve0 + token1Price * pair.reserve1);
+
+    return {
+      usdValue: usdValueQuick,
+      reserves: {
+        [pair.token0.symbol]: pair.reserve0,
+        [pair.token1.symbol]: pair.reserve1,
+      },
+    };
+  } catch (error) {
+    console.log(error.message);
+  }
+}
+
 module.exports = {
   getBalances,
+  getQuickswapPoolInfo,
 };
