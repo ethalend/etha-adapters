@@ -8,6 +8,10 @@
   "license": "MIT",
   "private": false,
   "dependencies": {
-    "ethers": "^5.5.4"
+    "axios": "^0.25.0",
+    "ethers": "^5.5.4",
+    "graphql": "^16.3.0",
+    "graphql-request": "^4.0.0",
+    "graphql-tag": "^2.12.6"
   }
 }
