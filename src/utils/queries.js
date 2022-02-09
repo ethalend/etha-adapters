@@ -12,9 +12,18 @@ const globalData = gql`
   }
 `;
 
-const walletQuery = gql`
+const walletQueryFirst = gql`
   query {
-    smartWallets(first: 1000) {
+    smartWallets(first: 1000, skip: 0) {
+      owner
+      address
+    }
+  }
+`;
+
+const walletQuerySecond = gql`
+  query {
+    smartWallets(first: 100, skip: 1000) {
       owner
       address
     }
@@ -41,5 +50,6 @@ const PAIR_DATA = (pair) => {
 module.exports = {
   globalData,
   PAIR_DATA,
-  walletQuery,
+  walletQueryFirst,
+  walletQuerySecond,
 };
