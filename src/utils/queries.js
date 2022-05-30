@@ -26,8 +26,8 @@ const PAIR_DATA = (pair) => {
     query  {
       pairs(where:{id:"${pair}"}) {
           id
-          token0{id symbol}
-          token1{id symbol}
+          token0{id symbol derivedETH}
+          token1{id symbol, derivedETH}
           reserve0
           reserve1
           totalSupply

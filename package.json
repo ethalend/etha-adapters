@@ -9,7 +9,8 @@
   "private": false,
   "scripts": {
     "totaltvl": "node ./src/totalTvl.js",
-    "unusedbalances": "node ./src/unusedBalances.js"
+    "unusedbalances": "node ./src/unusedBalances.js",
+    "lp-bal": "node ./src/lpBalance.js"
   },
   "dependencies": {
     "axios": "^0.25.0",

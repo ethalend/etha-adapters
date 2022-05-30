@@ -1,4 +1,5 @@
 const { defaultAbiCoder } = require("ethers/lib/utils");
+const axios = require("axios")
 
 const { MultiTokenBalanceGetter } = require("./bytecode.json");
 
@@ -24,20 +25,40 @@ async function getBalances(provider_, tokens, account) {
   return [blockNumber.toNumber(), balances];
 }
 
+const getEthPrice = async () => {
+  try {
+    const { data } = await axios.get(
+      'https://api.coingecko.com/api/v3/simple/price',
+      {
+        params: {
+          ids: 'ethereum',
+          vs_currencies: 'usd',
+        },
+      }
+    );
+    return +data['ethereum'].usd;
+  } catch (error) {
+    console.log('Error Fetching Eth Price');
+    console.log(error.message);
+    return 0;
+  }
+};
+
 async function getQuickswapPoolInfo(
   token,
   lpBalance,
-  priceData,
   client,
   PAIR_DATA
 ) {
   try {
+
+    const ETH_PRICE = await getEthPrice();
     const {
       pairs: [pair],
     } = await client.request(PAIR_DATA(token.toLowerCase()));
 
-    const token0Price = priceData[pair.token0.symbol];
-    const token1Price = priceData[pair.token1.symbol];
+    const token0Price = +pair.token0.derivedETH*ETH_PRICE;
+    const token1Price = +pair.token1.derivedETH*ETH_PRICE;
 
     const userShare = +lpBalance / pair.totalSupply / 1e18;
 
@@ -56,7 +77,18 @@ async function getQuickswapPoolInfo(
   }
 }
 
+const formatCurrency = (value, minimumFractionDigits = 2) => {
+	const formatter = new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "USD",
+		minimumFractionDigits,
+	});
+
+	return formatter.format(value);
+};
+
 module.exports = {
   getBalances,
   getQuickswapPoolInfo,
+  formatCurrency
 };
