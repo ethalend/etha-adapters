@@ -1,0 +1,74 @@
+[
+  {
+    "inputs": [],
+    "name": "DQUICK",
+    "outputs": [
+      {
+        "internalType": "contract IDragonLair",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "QUICK_FACTORY",
+    "outputs": [
+      {
+        "internalType": "contract IDistributionFactory",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "address[]",
+        "name": "lpTokens",
+        "type": "address[]"
+      }
+    ],
+    "name": "getStakingInfo",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "address",
+            "name": "stakingContract",
+            "type": "address"
+          },
+          {
+            "internalType": "uint256",
+            "name": "totalSupply",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "rewardsRate",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "periodFinish",
+            "type": "uint256"
+          },
+          {
+            "internalType": "uint256",
+            "name": "quickBalance",
+            "type": "uint256"
+          }
+        ],
+        "internalType": "struct StakingAdapter.Data[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+]

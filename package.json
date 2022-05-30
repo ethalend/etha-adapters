@@ -10,7 +10,8 @@
   "scripts": {
     "totaltvl": "node ./src/totalTvl.js",
     "unusedbalances": "node ./src/unusedBalances.js",
-    "lp-bal": "node ./src/lpBalance.js"
+    "lp-bal": "node ./src/lpBalance.js",
+    "rewards": "node ./src/quickswap.js"
   },
   "dependencies": {
     "axios": "^0.25.0",

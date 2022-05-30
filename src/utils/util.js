@@ -3,6 +3,13 @@ const axios = require("axios")
 
 const { MultiTokenBalanceGetter } = require("./bytecode.json");
 
+const timeout = (sec) =>
+  new Promise((res) =>
+    setTimeout(() => {
+      res();
+    }, sec * 1000)
+  );
+
 async function getBalances(provider_, tokens, account) {
   const provider = provider_;
   const inputData = defaultAbiCoder.encode(
@@ -90,5 +97,6 @@ const formatCurrency = (value, minimumFractionDigits = 2) => {
 module.exports = {
   getBalances,
   getQuickswapPoolInfo,
-  formatCurrency
+  formatCurrency,
+  timeout
 };

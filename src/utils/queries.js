@@ -12,6 +12,18 @@ const globalData = gql`
   }
 `;
 
+const quickVaultsData = gql`
+  query {
+    globalDatas(first: 100, where:{type:eVault, symbol:"UNI-V2"}) {
+      symbol
+      address
+      type
+      totalUnderlying
+      totalVolumeUSD
+    }
+  }
+`;
+
 const walletQuery = gql`
   query {
     smartWallets(first: 1000) {
@@ -40,6 +52,7 @@ const PAIR_DATA = (pair) => {
 
 module.exports = {
   globalData,
+  quickVaultsData,
   PAIR_DATA,
   walletQuery,
 };
